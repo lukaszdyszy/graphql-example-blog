@@ -8,7 +8,9 @@
       <div class="container">
         <h2>newest</h2>
         <Wall :posts="posts"></Wall>
-        <router-link to="/archive"></router-link>
+        <div class="show-more">
+          <router-link to="/archives">show more</router-link>
+        </div>
       </div>
     </main>
   </div>
@@ -71,5 +73,24 @@ h2 {
   text-transform: capitalize;
   letter-spacing: 3px;
   font-weight: bold;
+}
+
+.show-more{
+  padding: 50px 0 0 0;
+  a{
+    display: block;
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: rgb(98, 201, 98);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    &:hover{
+      background-color: rgb(83, 170, 83);
+    }
+  }
 }
 </style>

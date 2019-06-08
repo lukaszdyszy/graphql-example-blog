@@ -25,10 +25,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../global.scss";
+
 .wall {
   display: grid;
   grid-gap: 35px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  justify-content: center;
+  padding: 20px 0;
 }
 </style>

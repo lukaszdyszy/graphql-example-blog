@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { debounce } from 'lodash';
+
 export default {
   name: "TopBar",
   props: {
@@ -45,13 +47,13 @@ export default {
   created() {
     let self = this;
     if(this.mode == 'flexible'){
-      window.addEventListener("scroll", function() {
+      window.addEventListener("scroll", _.debounce(function() {
         if (window.scrollY >= window.innerHeight) {
           self.sticky = true;
         } else {
           self.sticky = false;
         }
-      });
+      }), 1000);
     } else {
       this.sticky = true;
     }

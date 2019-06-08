@@ -77,7 +77,6 @@ export default {
   },
   mounted(){
       this.initialize();
-      console.log(this.posts);
   },
   watch: {
     '$route.params.category'(){

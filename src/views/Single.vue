@@ -99,9 +99,6 @@ img.thumb{
     width: 100%;
     height: auto;
 }
-main{
-    margin-top: 100px;
-}
 
 h2{
     padding: 0;
