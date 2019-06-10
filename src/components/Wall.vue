@@ -6,6 +6,8 @@
       :title="post.title"
       :thumbnail="post.thumbnail.url"
       :excerpt="post.excerpt"
+      :date="post.createdAt"
+      :category="post.category"
     ></Post>
   </div>
 </template>

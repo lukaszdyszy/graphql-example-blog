@@ -2,7 +2,7 @@
   <div id="app">
     <div class="content">
       <transition name="page" mode="out-in">
-        <router-view></router-view>
+        <router-view :key="$route.params.category"></router-view>
       </transition>
     </div>
     <footer>

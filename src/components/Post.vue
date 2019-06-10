@@ -1,11 +1,21 @@
 <template>
   <div class="post">
     <h3>{{ title }}</h3>
+    <span class="date">{{ 
+      date.split('T')[0] + ' ' + date.split('T')[1].split('.')[0] 
+      }}</span>
+    <div class="categories">
+      <div :style="{'color': category.color.css}">
+        <router-link :to="'/category/' + category.name">{{ category.name }}</router-link>
+      </div>
+    </div>
     <img :src="thumbnail" alt="" class="thumbnail" />
     <p class="excerpt">
       {{ excerpt }}
     </p>
-    <router-link :to="'/single/' + id">read more</router-link>
+    <div class="read-more">
+      <router-link :to="'/single/' + id">read more</router-link>
+    </div>
   </div>
 </template>
 
@@ -14,14 +24,18 @@ export default {
   name: "Post",
   props: {
     title: String,
+    date: String,
     thumbnail: String,
     excerpt: String,
-    id: String
+    id: String,
+    category: Object
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import url('../global.scss');
+
 .post {
   border: 1px solid rgb(185, 185, 185);
   padding: 10px;
@@ -42,23 +56,31 @@ img.thumbnail {
   height: auto;
 }
 
+span.date{
+  color: grey;
+}
+
 p {
   line-height: 150%;
   margin: 0;
   padding: 10px 0;
 }
 
-a {
-  display: block;
-  width: 100%;
-  border: 1px solid;
-  color: rgb(133, 133, 133);
-  padding: 10px;
-  text-align: center;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  &:hover {
-    color: #88d188;
+div.read-more{
+  a {
+    display: block;
+    width: inherit;
+    height: inherit;
+    border: 1px solid;
+    color: grey;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    &:hover {
+      color: #88d188;
+    }
   }
 }
+
 </style>

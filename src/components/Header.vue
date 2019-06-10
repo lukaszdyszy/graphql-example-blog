@@ -1,10 +1,9 @@
 <template>
   <div class="header" :style="{'background-image': 'url('+image+')', 'border-color': color}">
     <div class="claim">
-      <h1>blog</h1>
+      <h1>{{ title }}</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum et
-        neque. Perspiciatis, asperiores blanditiis!
+        {{ description }}
       </p>
     </div>
     <i class="fas fa-arrow-down fa-3x" @click="scrollDown()"></i>
@@ -15,7 +14,9 @@
 export default {
   props: {
     image: String,
-    color: String
+    color: String,
+    title: String,
+    description: String
   },
   methods: {
     scrollDown() {

@@ -2,7 +2,10 @@
   <div class="home" v-if="posts.length > 0 && categories.length > 0">
     <header>
       <TopBar :mode="'flexible'"></TopBar>
-      <Header :image="categories[0].image.url"></Header>
+      <Header :image="categories[0].image.url" 
+      :title="title"
+      :description="description">
+      </Header>
     </header>
     <main>
       <div class="container">
@@ -32,7 +35,9 @@ export default {
   data() {
     return {
       posts: Array(),
-      categories: Array()
+      categories: Array(),
+      title: 'Blog',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nesciunt nam hic nihil, officiis autem?'
     };
   },
   apollo: {
@@ -46,6 +51,13 @@ export default {
             }
             excerpt
             id
+            category {
+              name,
+              color{
+                css
+              }
+            }
+            createdAt
           }
         }
       `

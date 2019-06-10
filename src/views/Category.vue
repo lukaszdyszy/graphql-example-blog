@@ -4,7 +4,9 @@
       <TopBar :mode="'flexible'"></TopBar>
       <Header 
       :image="posts[0].category.image.url" 
-      :color="posts[0].category.color.css"></Header>
+      :color="posts[0].category.color.css"
+      :title="this.$route.params.category"
+      :description="posts[0].category.description"></Header>
     </header>
     <main>
       <div class="container">
@@ -55,8 +57,10 @@ export default {
                 }
                 color{
                   css
-                }
+                },
+                description
             }
+            createdAt
           }
         }`,
         variables: {

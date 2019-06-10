@@ -45,7 +45,14 @@ export default {
                         url
                     },
                     excerpt,
-                    id
+                    id,
+                    category {
+                    name,
+                    color{
+                        css
+                    }
+                    }
+                    createdAt
                 }
             }`,
             variables: {
