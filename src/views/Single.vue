@@ -1,6 +1,6 @@
 <template>
     <div class="single" v-if="posts.length > 0">
-        <vue-scroll-progress-bar height="3px" />
+        <vue-scroll-progress-bar height="3px" :backgroundColor="progressBarColor"/>
         <header>
             <TopBar :mode="'static'"></TopBar>
         </header>
@@ -13,7 +13,11 @@
                     </div>
                 </div>
                 <div class="categories">
-                    <div :class="posts[0].category.name">{{ posts[0].category.name }}</div>
+                    <div :style="{'color': posts[0].category.color.css}">
+                        <router-link :to="'/category/' + posts[0].category.name">
+                            {{ posts[0].category.name }}
+                        </router-link>
+                    </div>
                 </div>
                 <img :src="posts[0].thumbnail.url" alt="" class="thumb">
                 <div class="single-content" v-html="posts[0].content.html"></div>
@@ -27,6 +31,7 @@ import gql from "graphql-tag";
 import TopBar from "../components/TopBar.vue";
 import Vue from 'vue'
 import VueScrollProgressBar from '@guillaumebriday/vue-scroll-progress-bar'
+import { debounce } from 'lodash';
 
 Vue.component("vue-scroll-progress-bar", VueScrollProgressBar)
 
@@ -38,7 +43,8 @@ export default {
     },
     data(){
         return {
-            posts: Array()
+            posts: Array(),
+            progressBarColor: ''
         }
     },
     apollo: {
@@ -54,7 +60,10 @@ export default {
                         html
                     },
                     category{
-                        name
+                        name,
+                        color{
+                            css
+                        }
                     }
                 }
             }`,
@@ -68,15 +77,35 @@ export default {
     },
     methods: {
         initialize(){
+            let self = this;
+            this.posts = Array();
             this.$apollo.queries.posts.options.variables = {
                 id: this.$route.params.id
             }
+            this.$apollo.queries.posts.options.result = _.debounce(function(){
+                self.normalizeAssets();
+                if(self.posts[0].category.name != 'others'){
+                    self.progressBarColor = self.posts[0].category.color.css;
+                } else {
+                    self.progressBarColor = "rgb(28, 158, 61)";
+                }
+            }, 100);
             this.$apollo.queries.posts.skip = false;
+        },
+        normalizeAssets(){
+            let images = document.getElementsByClassName('css-1pmpp80');
+            if(images.length > 0){
+                for(let i=0; i<images.length; i++){
+                    images[i].removeAttribute("width");
+                    images[i].style.maxWidth = "100%";
+                    images[i].removeAttribute("height");
+                    images[i].style.height = "auto";
+                }
+            }
         }
     },
     created(){
         this.initialize();
-        this.$parent.topbarMode = 'static';
     },
     computed: {
         dateTime(){
@@ -108,11 +137,6 @@ h2{
 .date{
     color: $secondary-color;
     font-size: 1.1rem;
-}
-
-img{
-    max-width: 100% !important;
-    height: auto;
 }
 
 .categories {

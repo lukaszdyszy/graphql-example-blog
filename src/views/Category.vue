@@ -43,7 +43,7 @@ export default {
               category: {
                   name: $category
               }
-          }) {
+          }, orderBy: createdAt_DESC) {
             title
             thumbnail {
               url
