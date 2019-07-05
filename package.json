@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "git checkout gh-pages && git checkout master src && npm run build && git add dist && git commit -m 'deployment'",
+    "postdeploy": "git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "@guillaumebriday/vue-scroll-progress-bar": "^0.2.0",
