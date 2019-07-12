@@ -91,6 +91,8 @@ export default {
                 }
             }, 100);
             this.$apollo.queries.posts.skip = false;
+            
+            window.scroll(0, 0);
         },
         normalizeAssets(){
             let images = document.getElementsByClassName('css-1pmpp80');
@@ -124,6 +126,13 @@ export default {
 <style lang="scss" scoped>
 @import '../global.scss';
 
+// .single{
+//     background-color: rgb(243, 243, 243);
+// }
+// .container{
+//     background-color: white;
+// }
+
 img.thumb{
     width: 100%;
     height: auto;
@@ -137,6 +146,13 @@ h2{
 .date{
     color: $secondary-color;
     font-size: 1.1rem;
+}
+
+.title-bar{
+    border-top: 3px double $secondary-color;
+    border-bottom: 1px solid $secondary-color;
+    padding: 10px 0;
+    margin-top: 25px;
 }
 
 .categories {

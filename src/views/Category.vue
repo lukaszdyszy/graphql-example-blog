@@ -77,6 +77,7 @@ export default {
           category: this.$route.params.category
       }
       this.$apollo.queries.posts.skip = false;
+      window.scroll(0, 0);
     }
   },
   mounted(){

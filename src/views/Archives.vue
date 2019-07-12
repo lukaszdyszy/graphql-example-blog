@@ -100,6 +100,7 @@ export default {
     },
     created(){
         this.getPosts();
+        window.scroll(0, 0);
     }
 }
 </script>
