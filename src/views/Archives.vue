@@ -10,9 +10,11 @@
             </div>
             <div class="pagination">
                 <div class="pag-arrow" @click="prevPage()"><i class="fas fa-angle-left"></i></div>
-                <div @click="page=0;getPosts()"> 1 </div>
-                <div class="number"> ... {{ page + 1 }} ... </div>
-                <div @click="page=lastPage-1;getPosts()"> {{ lastPage }} </div>
+                <div @click="page=0;getPosts()" class="number"> 1 ... </div>
+                <div v-if="page > 1" class="number" @click="page--;getPosts()">{{ page }}</div>
+                <div class="number">{{ page + 1 }}</div>
+                <div v-if="page < lastPage-2" class="number" @click="page++;getPosts()">{{ page + 2 }}</div>
+                <div @click="page=lastPage-1;getPosts()" class="number"> ... {{ lastPage }} </div>
                 <div class="pag-arrow" @click="nextPage()"><i class="fas fa-angle-right"></i></div>
             </div>
         </main>
@@ -114,15 +116,20 @@ main{
 .pagination{
     display: flex;
     justify-content: center;
-    font-size: 1.35rem;
+    align-items: center;
+    font-size: 1.5rem;
     padding: 30px 0;
-    div{
-        padding: 15px;
-    }
 }
 .pag-arrow{
     padding: 7px;
+    margin: 5px;
     border: 1px solid black;
+}
+.number{
+    padding: 0 7px;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 
