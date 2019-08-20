@@ -24,6 +24,11 @@
               ><i class="fas fa-video"></i> movies</router-link
             >
           </li>
+          <li>
+            <router-link to="/category/series"
+              ><i class="fas fa-tv"></i> series</router-link
+            >
+          </li>
         </ul>
       </nav>
     </div>

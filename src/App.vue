@@ -32,7 +32,7 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 a {

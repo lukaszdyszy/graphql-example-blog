@@ -166,6 +166,10 @@ h2{
     }
 }
 
+p{
+    line-height: 150%;
+}
+
 @media (min-width: $desktop-width) {
     .title-bar{
         display: flex;

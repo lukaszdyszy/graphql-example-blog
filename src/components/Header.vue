@@ -40,7 +40,7 @@ export default {
   align-items: center;
   padding: 15px;
   color: white;
-  text-shadow: 3px 1px 1px black;
+  text-shadow: 2px 2px 2px #000000;
   position: relative;
 }
 .claim {
@@ -52,6 +52,10 @@ h1 {
   letter-spacing: 5px;
   text-transform: capitalize;
   font-size: 3rem;
+}
+p{
+  font-size: 1.5rem;
+  letter-spacing: 1px;
 }
 
 .fa-arrow-down {
